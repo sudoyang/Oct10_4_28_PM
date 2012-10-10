@@ -1,0 +1,43 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+Cellnumber	2_grad_ecoli_2 copy.cc	/^int    Cellnumber=100000;$/;"	v
+Cellnumber	2_grad_ecoli_2.cc	/^int    Cellnumber=100000;$/;"	v
+L_Serine_C	2_grad_ecoli.cc	/^double L_Serine_C(double left_C, double right_C, double position_x, double position_y) {$/;"	f
+L_Serine_C	2_grad_ecoli_2.cc	/^double L_Serine_C(double position_x, double position_y) {$/;"	f
+MeAsp_C	2_grad_ecoli.cc	/^double MeAsp_C(double left_C, double right_C, double position_x, double position_y) {$/;"	f
+MeAsp_C	2_grad_ecoli_2.cc	/^double MeAsp_C(double position_x, double position_y) {$/;"	f
+MeAsp_C_L	2_grad_ecoli.cc	/^double MeAsp_C_L=130;$/;"	v
+MeAsp_C_L	2_grad_ecoli_2 copy.cc	/^const double MeAsp_C_L=130;$/;"	v
+MeAsp_C_L	2_grad_ecoli_2.cc	/^const double MeAsp_C_L=130;$/;"	v
+MeAsp_C_R	2_grad_ecoli.cc	/^double MeAsp_C_R=300;$/;"	v
+MeAsp_C_R	2_grad_ecoli_2 copy.cc	/^const double MeAsp_C_R=300;$/;"	v
+MeAsp_C_R	2_grad_ecoli_2.cc	/^const double MeAsp_C_R=300;$/;"	v
+N	2_grad_ecoli.cc	/^int    N=400;$/;"	v
+PI	2_grad_ecoli_2 copy.cc	/^const double PI=3.1415926535;$/;"	v
+PI	2_grad_ecoli_2.cc	/^const double PI=3.1415926535;$/;"	v
+Pro_ratio	2_grad_ecoli.cc	/^double Pro_ratio(double ratio) {$/;"	f
+Pro_ratio	2_grad_ecoli_2.cc	/^double Pro_ratio(double ratio, double L_Serine_C, double MeAsp_C, double x, double y) {$/;"	f
+Ser_C_L	2_grad_ecoli.cc	/^double Ser_C_L=20; \/\/uM$/;"	v
+Ser_C_L	2_grad_ecoli_2 copy.cc	/^const double Ser_C_L=20; \/\/uM$/;"	v
+Ser_C_L	2_grad_ecoli_2.cc	/^const double Ser_C_L=20; \/\/uM$/;"	v
+Ser_C_R	2_grad_ecoli.cc	/^double Ser_C_R=8;$/;"	v
+Ser_C_R	2_grad_ecoli_2 copy.cc	/^const double Ser_C_R=8;$/;"	v
+Ser_C_R	2_grad_ecoli_2.cc	/^const double Ser_C_R=8;$/;"	v
+Time	2_grad_ecoli_2 copy.cc	/^const double Time=40000;$/;"	v
+Time	2_grad_ecoli_2.cc	/^const double Time=40000;$/;"	v
+Xlength	2_grad_ecoli_2 copy.cc	/^const double Xlength=400; \/\/um$/;"	v
+Xlength	2_grad_ecoli_2.cc	/^const double Xlength=400; \/\/um$/;"	v
+Ylength	2_grad_ecoli_2 copy.cc	/^const double Ylength=400;$/;"	v
+Ylength	2_grad_ecoli_2.cc	/^const double Ylength=400;$/;"	v
+length	2_grad_ecoli.cc	/^double length=400; \/\/um$/;"	v
+main	2_grad_ecoli.cc	/^int main() {$/;"	f
+main	2_grad_ecoli_2 copy.cc	/^int main() {$/;"	f
+main	2_grad_ecoli_2.cc	/^int main() {$/;"	f
+ratio	2_grad_ecoli.cc	/^double ratio=0.5;$/;"	v
+tstep	2_grad_ecoli.cc	/^int    tstep=500000;$/;"	v
+tstep	2_grad_ecoli_2 copy.cc	/^const int    tstep=0.5$/;"	v
+tstep	2_grad_ecoli_2.cc	/^const int    tstep=0.5;$/;"	v

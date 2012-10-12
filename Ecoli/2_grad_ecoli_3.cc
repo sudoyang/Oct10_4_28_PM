@@ -17,41 +17,7 @@
  */
 
 
-//#include "ecoli.h"
-
-
-#include <iostream>
-#include <cmath>
-#include <ctime>
-#include <fstream>
-#include <string>
-
-
-using namespace std;
-
-const double PI=3.1415926535;
-const double Time=40000;
-
-const double Xlength=400; //um
-const double Ylength=400;
-
-
-int    Cellnumber=100000;
-const double Ser_C_L=20; //uM
-const double Ser_C_R=8;
-const double MeAsp_C_L=130;
-const double MeAsp_C_R=300;
-//double p_r=0.1;
-
-const int tstep=1;
-
-double L_Serine_C( double position_x, double position_y); 
-double MeAsp_C( double position_x, double position_y); 
-double Pro_ratio(double ratio, double L_Serine_C, double MeAsp_C, double x, double y); 
-
-
-
-
+#include "ecoli.h"
 
 int main() {
 	
@@ -60,6 +26,9 @@ int main() {
 	ifstream   ifile;
 	ifile.open(filename);
 
+	cout <<  endl;
+	cout <<  endl;
+	cout <<  endl;
 	cout << "Reading input data" << endl;
 
 	if(!ifile) {
@@ -70,8 +39,7 @@ int main() {
 	double ratio, hist_1, hist_2, hist_3;
 	double sum_1, sum_2, sum_3;
 	
-	sum_1=sum_2=sum_3;
-
+	sum_1=sum_2=sum_3=0;
 
 	while(ifile >> ratio >> hist_1 >> hist_2 >> hist_3){
 
@@ -79,10 +47,12 @@ int main() {
 		sum_2+=hist_2;
 		sum_3+=hist_3;
 
-
 	}
 
 	ifile.close();
+	cout << "N for 1 list: " << sum_1  << endl; 
+	cout << "N for 2 list: " << sum_2  << endl; 
+	cout << "N for 3 list: " << sum_3  << endl; 
 	cout << "Done" <<endl;
 
 	Cellnumber = sum_1;
@@ -94,7 +64,6 @@ int main() {
 	double Angle[Cellnumber];
 	double Speed[Cellnumber];
 	double Ratio[Cellnumber];
-
 
 	ifile.open(filename);
 
@@ -112,13 +81,12 @@ int main() {
 	
 	ifile.close();
 
-
 	//initialize the positioins, angles and speed.
 	for(int i=0; i< Cellnumber; i++)	{
 			X[i]=(float)rand()/RAND_MAX*Xlength;
 	        Y[i]=(float)rand()/RAND_MAX*Ylength;
 			Angle[i]=(2*(float)rand()/RAND_MAX-1.0)*PI;
-			Speed[i]=60;
+			Speed[i]=30;  // um 60 before.
  
 	}
 
@@ -126,13 +94,24 @@ int main() {
     cout << "Done" << endl;
 
 	//start the simulation.
-
+	
+	cout <<  endl;
+	cout <<  endl;
+	cout <<  endl;
+	cout << "Start the simulation!" << endl;
+	cout << "Total Cell number is " << Cellnumber << endl;
+	cout <<	"The area for cells are " << Xlength << "um *" << Ylength << "um squre." << endl;
+	cout << "Total simulation time is " << Time  << " us" << ", and the time step is " << tstep << " us"<< endl;
+	cout << "Bias contains two kinds, which are, Ser and MeAsp" << endl;
+	cout << "Ser, left " << Ser_C_L << " and right " << Ser_C_R << endl;
+	cout << "MeAsp, left " << MeAsp_C_L << " and right " << MeAsp_C_R << endl;
+	
 
 	for(int t=0; t < Time; t=t+tstep) {
 
+
 		for(int i=0; i<Cellnumber; i++) {
 
-		
 			if(X[i] > Xlength) {
 				X[i] = Xlength;
 				if(Angle[i] > 0)
@@ -166,7 +145,7 @@ int main() {
 			C_Serine = L_Serine_C(X[i], Y[i]);
 			C_MeAsp = MeAsp_C(X[i], Y[i]);
 
-			if((float)rand()/RAND_MAX < Pro_ratio(Ratio[i], C_Serine, C_MeAsp, X[i], Y[i])) {
+			if((float)rand()/RAND_MAX < Pro_ratio(Ratio[i], C_Serine, C_MeAsp)) {
 				
 				Angle[i]=(2*(float)rand()/RAND_MAX-1.0)*PI;
 				Speed[i]=Speed[i]/3.0;
@@ -209,9 +188,14 @@ int main() {
 
 		}
 
-		if( t%1000 == 0 ) {
 
-		cout << "Time is " << t << endl;
+		if( t%1000 == 0 ) {
+		
+			finish = clock();
+		    duration=(double)(finish-start)/CLOCKS_PER_SEC;
+			start  = finish;
+
+		cout << "Time(simulation): " << t << " us      Mathcine time: " << duration << " seconds" << endl;
  
 		std::string s = std::to_string(t);
 
@@ -252,9 +236,19 @@ double MeAsp_C(double position_x, double position_y) {
 }
 
 //Based on the ratio of receptor, we can determine the probability of directions.
-double Pro_ratio(double ratio, double L_Serine_C, double MeAsp_C, double x, double y) {
+double Pro_ratio(double ratio, double L_Serine_C, double MeAsp_C) {
 
 	double pro=0;
-		   pro=0.500;
+  
+	L_1 = MeAsp_C;
+	L_2 = L_Serine_C;
+
+double N_2 = 12.0/(ratio+1.0);
+double N_1 = N_2*ratio;
+double L_j = pow(l_1, N_1)*pow(l_2, N_2)*pow(l_0, 4.0); //4.0 is from N_1/f_1
+	//L_1 and L_2 use uM, which is the same with MeAsp and L_Serine.
+	
+	pro=A_j*L_j*pow((1+C_1*L_1/K_1),N_1)*pow((1+C_2*L_2/K_2), N_2)/(pow((1+L_1/K_1),N_1)*pow((1+L_2/K_2),N_2)+L_j*pow((1+C_1*L_1/K_1),N_1)*pow((1+C_2*L_2/K_2), N_2));
+
 	return pro;
 }
